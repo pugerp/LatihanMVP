@@ -1,5 +1,6 @@
 package com.example.latihanmvp.ui.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +8,10 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 
+
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity {
 
+    private ProgressDialog progressDialog;
     protected P presenter;
     protected abstract void onAttachView();
     protected abstract P createPresenter();
@@ -35,5 +38,16 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             presenter.onDetach();
 
         presenter.onUnsubscribe();
+    }
+
+    public void showLoading() {
+        hideLoading();
+        progressDialog = ProgressDialog.show(this, null, "Loading, Please wait...", true);
+    }
+
+    public void hideLoading() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.cancel();
+        }
     }
 }

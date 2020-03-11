@@ -3,13 +3,21 @@ package com.example.latihanmvp.ui.activity.second;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.example.latihanmvp.R;
 import com.example.latihanmvp.ui.base.BaseActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SecondActivity extends BaseActivity<SecondPresenter> implements SecondContract.View {
 
-    public static void startActivity(Activity activity){
+    @BindView(R.id.name)
+    TextView name;
+
+    public static void startActivity(Activity activity) {
         activity.startActivity(new Intent(activity, SecondActivity.class));
     }
 
@@ -30,6 +38,14 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
 
     @Override
     protected void setup(Bundle savedInstanceState) {
+        presenter.loadAllEmployee();
+    }
 
+    public void setData(String employeeName) {
+        name.setText(employeeName);
+    }
+
+    public void failedReq(String message) {
+        Log.d("CHECKFAILED", "failedReq: "+message);
     }
 }

@@ -3,9 +3,10 @@ package com.example.latihanmvp.ui.base;
 import android.util.Log;
 
 import com.example.latihanmvp.MvpView;
+import com.example.latihanmvp.network.NetworkCallback;
+import com.example.latihanmvp.network.NetworkClient;
 
 import java.net.NetworkInterface;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -14,10 +15,10 @@ import rx.subscriptions.CompositeSubscription;
 
 public abstract class BasePresenter<V extends MvpView> {
 
-    protected NetworkInterface networkInterface;
     private CompositeSubscription compositeSubscription;
     private Subscriber subscriber;
     protected V mView;
+
     public void onAttach(V view){
         this.mView = view;
     }
@@ -33,7 +34,7 @@ public abstract class BasePresenter<V extends MvpView> {
         }
     }
 
-    protected void addSubscribe(Observable observable, Subscriber subscriber) {
+    protected <M> void addSubscribe(Observable<M> observable, Subscriber<M> subscriber) {
         this.subscriber = subscriber;
         if (compositeSubscription == null) {
             compositeSubscription = new CompositeSubscription();
