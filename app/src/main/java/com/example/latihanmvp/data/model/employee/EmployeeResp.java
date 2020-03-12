@@ -1,4 +1,4 @@
-package com.example.latihanmvp.network.model.employee;
+package com.example.latihanmvp.data.model.employee;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;

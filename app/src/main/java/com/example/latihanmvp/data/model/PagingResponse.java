@@ -1,4 +1,4 @@
-package com.example.latihanmvp.network.model;
+package com.example.latihanmvp.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

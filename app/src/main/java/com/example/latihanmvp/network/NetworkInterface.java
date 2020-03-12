@@ -1,9 +1,8 @@
 package com.example.latihanmvp.network;
 
-import com.example.latihanmvp.AppConstant;
-import com.example.latihanmvp.BuildConfig;
-import com.example.latihanmvp.network.model.PagingResponse;
-import com.example.latihanmvp.network.model.employee.EmployeeResp;
+import com.example.latihanmvp.root.AppConstant;
+import com.example.latihanmvp.data.model.PagingResponse;
+import com.example.latihanmvp.data.model.employee.EmployeeResp;
 
 import retrofit2.Response;
 import retrofit2.http.GET;

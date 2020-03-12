@@ -1,6 +1,6 @@
 package com.example.latihanmvp.ui.activity.main;
 
-import com.example.latihanmvp.ui.base.BasePresenter;
+import com.example.latihanmvp.ui._core.base.BasePresenter;
 
 
 public class MainPresenter extends BasePresenter<MainActivity> implements MainContract.Presenter {

@@ -1,4 +1,4 @@
-package com.example.latihanmvp.ui.base;
+package com.example.latihanmvp.ui._core.base;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 
 
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity{
 
     private ProgressDialog progressDialog;
     protected P presenter;
@@ -21,10 +21,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
-        presenter = createPresenter();
-        setup(savedInstanceState);
         ButterKnife.bind(this);
+        presenter = createPresenter();
         onAttachView();
+        setup(savedInstanceState);
     }
 
     public void showToastMessage(String s){
@@ -50,4 +50,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             progressDialog.cancel();
         }
     }
+//
+//    @Override
+//    public void onFragmentAttach() {
+//
+//    }
+//
+//    @Override
+//    public void onFragmentDetach(String tag) {
+//
+//    }
 }

@@ -3,11 +3,9 @@ package com.example.latihanmvp.ui.activity.second;
 import com.example.latihanmvp.network.NetworkCallback;
 import com.example.latihanmvp.network.NetworkClient;
 import com.example.latihanmvp.network.NetworkInterface;
-import com.example.latihanmvp.network.model.PagingResponse;
-import com.example.latihanmvp.network.model.employee.EmployeeResp;
-import com.example.latihanmvp.ui.base.BasePresenter;
-
-import retrofit2.Response;
+import com.example.latihanmvp.data.model.PagingResponse;
+import com.example.latihanmvp.data.model.employee.EmployeeResp;
+import com.example.latihanmvp.ui._core.base.BasePresenter;
 
 public class SecondPresenter extends BasePresenter<SecondActivity> implements SecondContract.Presenter{
 
@@ -17,13 +15,8 @@ public class SecondPresenter extends BasePresenter<SecondActivity> implements Se
         networkInterface = NetworkClient.getInstance().create(NetworkInterface.class);
     }
 
-    @Override
-    public void onAttach(SecondActivity view) {
-        super.onAttach(view);
-    }
-
     void loadAllEmployee() {
-//        mView.showLoading();
+        mView.showLoading();
         addSubscribe(networkInterface.getAllEmployess(), new NetworkCallback<PagingResponse<EmployeeResp>>() {
             @Override
             public void onSuccess(PagingResponse<EmployeeResp> model) {
@@ -37,7 +30,7 @@ public class SecondPresenter extends BasePresenter<SecondActivity> implements Se
 
             @Override
             public void onFinish() {
-//                mView.hideLoading();
+                mView.hideLoading();
             }
         });
     }

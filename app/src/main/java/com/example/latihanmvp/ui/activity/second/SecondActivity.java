@@ -7,10 +7,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.latihanmvp.R;
-import com.example.latihanmvp.ui.base.BaseActivity;
+import com.example.latihanmvp.ui._core.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SecondActivity extends BaseActivity<SecondPresenter> implements SecondContract.View {
 
@@ -19,11 +18,6 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
 
     public static void startActivity(Activity activity) {
         activity.startActivity(new Intent(activity, SecondActivity.class));
-    }
-
-    @Override
-    protected void onAttachView() {
-        presenter.onAttach(this);
     }
 
     @Override
@@ -37,6 +31,11 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
     }
 
     @Override
+    protected void onAttachView() {
+        presenter.onAttach(this);
+    }
+
+    @Override
     protected void setup(Bundle savedInstanceState) {
         presenter.loadAllEmployee();
     }
@@ -46,6 +45,6 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
     }
 
     public void failedReq(String message) {
-        Log.d("CHECKFAILED", "failedReq: "+message);
+        Log.d("CHECKFAILED", "failedReq: " + message);
     }
 }

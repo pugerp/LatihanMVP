@@ -1,6 +1,6 @@
 package com.example.latihanmvp.network;
 
-import com.example.latihanmvp.AppConstant;
+import com.example.latihanmvp.root.AppConstant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

@@ -1,12 +1,8 @@
-package com.example.latihanmvp.ui.base;
+package com.example.latihanmvp.ui._core.base;
 
 import android.util.Log;
 
-import com.example.latihanmvp.MvpView;
-import com.example.latihanmvp.network.NetworkCallback;
-import com.example.latihanmvp.network.NetworkClient;
-
-import java.net.NetworkInterface;
+import com.example.latihanmvp.ui._core.mvp.MvpView;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
