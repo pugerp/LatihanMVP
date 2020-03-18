@@ -2,6 +2,7 @@ package com.example.latihanmvp.ui._core.base;
 
 import android.util.Log;
 
+import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.mvp.MvpView;
 import rx.Observable;
 import rx.Subscriber;
@@ -14,6 +15,7 @@ public abstract class BasePresenter<V extends MvpView> {
     private CompositeSubscription compositeSubscription;
     private Subscriber subscriber;
     protected V mView;
+    public NetworkInterface networkInterface;
 
     public void onAttach(V view){
         this.mView = view;
@@ -25,8 +27,11 @@ public abstract class BasePresenter<V extends MvpView> {
 
     public void onUnsubscribe() {
         if (compositeSubscription != null && compositeSubscription.hasSubscriptions()) {
+            if (subscriber != null) {
+                subscriber.unsubscribe();
+            }
             compositeSubscription.unsubscribe();
-            Log.e("TAG", "onUnsubscribe: ");
+            Log.e("TAG", "onUnsubscribe...");
         }
     }
 
@@ -45,5 +50,9 @@ public abstract class BasePresenter<V extends MvpView> {
         if (subscriber != null) {
             subscriber.unsubscribe();
         }
+    }
+
+    public void setNetworkInterface(NetworkInterface networkInterface) {
+        this.networkInterface = networkInterface;
     }
 }

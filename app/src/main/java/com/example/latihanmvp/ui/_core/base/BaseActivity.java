@@ -6,10 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.latihanmvp.network.NetworkClient;
+import com.example.latihanmvp.network.NetworkInterface;
+
 import butterknife.ButterKnife;
 
 
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity{
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseFragment.Callback{
 
     private ProgressDialog progressDialog;
     protected P presenter;
@@ -17,12 +20,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected abstract P createPresenter();
     protected abstract int getLayout();
     protected abstract void setup(Bundle savedInstanceState);
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         ButterKnife.bind(this);
         presenter = createPresenter();
+        presenter.setNetworkInterface(NetworkClient.getInstance().create(NetworkInterface.class));
         onAttachView();
         setup(savedInstanceState);
     }
@@ -36,7 +41,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onDestroy();
         if(presenter != null)
             presenter.onDetach();
-
         presenter.onUnsubscribe();
     }
 
@@ -50,14 +54,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             progressDialog.cancel();
         }
     }
-//
-//    @Override
-//    public void onFragmentAttach() {
-//
-//    }
-//
-//    @Override
-//    public void onFragmentDetach(String tag) {
-//
-//    }
+
+    @Override
+    public void onFragmentAttach() {
+
+    }
+
+    @Override
+    public void onFragmentDetach(String tag) {
+
+    }
 }

@@ -1,8 +1,12 @@
 package com.example.latihanmvp.ui.fragment;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.example.latihanmvp.R;
+import com.example.latihanmvp.data.model.employee.EmployeeResp;
+import com.example.latihanmvp.network.NetworkClient;
+import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.base.BaseFragment;
 
 import butterknife.BindView;
@@ -28,7 +32,7 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements First
 
     @Override
     protected void setup(View view) {
-
+        presenter.getEmployee();
     }
 
     @Override
@@ -36,4 +40,11 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements First
         presenter.onAttach(this);
     }
 
+    public void onSuccess(EmployeeResp employeeResp) {
+        text1.setText(employeeResp.getEmployeeName());
+    }
+
+    public void onFailed(String message) {
+        Log.e("FAILEDREQ", "onFailed: "+message);
+    }
 }

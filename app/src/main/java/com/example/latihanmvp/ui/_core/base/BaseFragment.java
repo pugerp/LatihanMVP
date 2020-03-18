@@ -1,6 +1,7 @@
 package com.example.latihanmvp.ui._core.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.latihanmvp.network.NetworkClient;
+import com.example.latihanmvp.network.NetworkInterface;
+
 import butterknife.ButterKnife;
 
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
 
-    public Activity mActivity;
+    public BaseActivity mActivity;
     protected P presenter;
     protected abstract P createPresenter();
     protected abstract int getLayout();
@@ -27,6 +31,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
         View view = getActivity().getLayoutInflater().inflate(getLayout(), container, false);
         ButterKnife.bind(this, view);
         presenter = createPresenter();
+        presenter.setNetworkInterface(NetworkClient.getInstance().create(NetworkInterface.class));
         onAttachView();
         setup(view);
         return view;
@@ -36,19 +41,23 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("CHECKFRAGMENT", "onViewCreated..");
-        mActivity = getActivity();
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof BaseActivity) {
-//            BaseActivity activity = (BaseActivity) context;
-//            this.mActivity = activity;
-//            activity.onFragmentAttach();
-//
-//        }
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof BaseActivity) {
+            BaseActivity activity = (BaseActivity) context;
+            this.mActivity = activity;
+            mActivity.onFragmentAttach();
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        mActivity.onFragmentDetach("detach");
+        super.onDetach();
+    }
 
     @Override
     public void onDestroy() {
@@ -56,9 +65,22 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
         if(presenter != null)
             presenter.onDetach();
     }
-//
-//    public interface Callback {
-//        void onFragmentAttach();
-//        void onFragmentDetach(String tag);
-//    }
+
+    public void showLoading() {
+        if (mActivity != null) {
+            hideLoading();
+            mActivity.showLoading();
+        }
+    }
+
+    public void hideLoading() {
+        if (mActivity != null) {
+            mActivity.hideLoading();
+        }
+    }
+
+    public interface Callback {
+        void onFragmentAttach();
+        void onFragmentDetach(String tag);
+    }
 }

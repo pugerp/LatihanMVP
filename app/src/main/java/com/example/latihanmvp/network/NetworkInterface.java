@@ -1,5 +1,6 @@
 package com.example.latihanmvp.network;
 
+import com.example.latihanmvp.BuildConfig;
 import com.example.latihanmvp.root.AppConstant;
 import com.example.latihanmvp.data.model.PagingResponse;
 import com.example.latihanmvp.data.model.employee.EmployeeResp;
@@ -12,7 +13,7 @@ public interface NetworkInterface {
     @GET("")
     Observable<String> getSomething();
 
-    @GET(AppConstant.API_VERS + "employees")
+    @GET(BuildConfig.BASE_PATH + "employees")
     Observable<Response<PagingResponse<EmployeeResp>>> getAllEmployess();
 
 }

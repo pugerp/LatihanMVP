@@ -7,6 +7,8 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.latihanmvp.R;
+import com.example.latihanmvp.network.NetworkClient;
+import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.base.BaseActivity;
 
 import butterknife.BindView;
@@ -40,11 +42,13 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
         presenter.loadAllEmployee();
     }
 
-    public void setData(String employeeName) {
+    @Override
+    public void onSuccess(String employeeName) {
         name.setText(employeeName);
     }
 
-    public void failedReq(String message) {
+    @Override
+    public void onFailed(String message) {
         Log.d("CHECKFAILED", "failedReq: " + message);
     }
 }
