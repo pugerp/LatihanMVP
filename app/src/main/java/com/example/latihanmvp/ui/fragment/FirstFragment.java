@@ -5,8 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 import com.example.latihanmvp.R;
 import com.example.latihanmvp.data.model.employee.EmployeeResp;
-import com.example.latihanmvp.network.NetworkClient;
-import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.base.BaseFragment;
 
 import butterknife.BindView;

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.latihanmvp.R;
+import com.example.latihanmvp.data.model.employee.EmployeeResp;
 import com.example.latihanmvp.network.NetworkClient;
 import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.base.BaseActivity;
@@ -43,8 +44,8 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
     }
 
     @Override
-    public void onSuccess(String employeeName) {
-        name.setText(employeeName);
+    public void onSuccess(EmployeeResp data) {
+        name.setText(data.getEmployeeName());
     }
 
     @Override

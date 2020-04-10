@@ -1,23 +1,30 @@
 package com.example.latihanmvp.data.model.employee;
 
 import javax.annotation.Generated;
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("com.robohorse.robopojogenerator")
 public class EmployeeResp{
 
+	@Expose
 	@SerializedName("profile_image")
 	private String profileImage;
 
+	@Expose
 	@SerializedName("employee_name")
 	private String employeeName;
 
+	@Expose
 	@SerializedName("employee_salary")
 	private String employeeSalary;
 
+	@Expose
 	@SerializedName("id")
 	private String id;
 
+	@Expose
 	@SerializedName("employee_age")
 	private String employeeAge;
 

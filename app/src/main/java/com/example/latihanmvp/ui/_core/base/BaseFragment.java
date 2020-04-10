@@ -1,6 +1,5 @@
 package com.example.latihanmvp.ui._core.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +14,7 @@ import com.example.latihanmvp.network.NetworkClient;
 import com.example.latihanmvp.network.NetworkInterface;
 
 import butterknife.ButterKnife;
+
 
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
 

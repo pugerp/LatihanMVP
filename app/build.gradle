@@ -34,8 +34,8 @@ android {
     productFlavors {
         global {
             signingConfig signingConfigs.release
-            buildConfigField("String", "BASE_URL","")
-            buildConfigField("String", "BASE_PATH","")
+            buildConfigField("String", "BASE_URL","\"https://dummy.restapiexample.com/\"")
+            buildConfigField("String", "BASE_PATH","\"api/v1/\"")
             dimension = "default"
         }
         staging {
