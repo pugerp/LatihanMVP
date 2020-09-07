@@ -1,8 +1,8 @@
 package com.example.latihanmvp.ui.activity.main;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -16,7 +16,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
-
 
     @BindView(R.id.btnToast)
     Button btnToast;

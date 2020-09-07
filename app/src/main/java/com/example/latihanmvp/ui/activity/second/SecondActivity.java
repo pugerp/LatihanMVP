@@ -12,6 +12,8 @@ import com.example.latihanmvp.network.NetworkClient;
 import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.base.BaseActivity;
 
+import java.util.List;
+
 import butterknife.BindView;
 
 public class SecondActivity extends BaseActivity<SecondPresenter> implements SecondContract.View {
@@ -44,8 +46,8 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
     }
 
     @Override
-    public void onSuccess(EmployeeResp data) {
-        name.setText(data.getEmployeeName());
+    public void onSuccess(List<EmployeeResp> employees) {
+        name.setText(employees.toString());
     }
 
     @Override

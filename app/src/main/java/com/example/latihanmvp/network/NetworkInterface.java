@@ -10,8 +10,6 @@ import retrofit2.http.GET;
 import rx.Observable;
 
 public interface NetworkInterface {
-    @GET("")
-    Observable<String> getSomething();
 
     @GET(BuildConfig.BASE_PATH + "employees")
     Observable<Response<PagingResponse<EmployeeResp>>> getAllEmployess();

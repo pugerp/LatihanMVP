@@ -3,11 +3,14 @@ package com.example.latihanmvp.ui.fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 import com.example.latihanmvp.R;
 import com.example.latihanmvp.data.model.employee.EmployeeResp;
 import com.example.latihanmvp.ui._core.base.BaseFragment;
+import com.example.latihanmvp.ui.activity.second.SecondActivity;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class FirstFragment extends BaseFragment<FirstPresenter> implements FirstContract.View {
 
@@ -43,6 +46,11 @@ public class FirstFragment extends BaseFragment<FirstPresenter> implements First
     }
 
     public void onFailed(String message) {
-        Log.e("FAILEDREQ", "onFailed: "+message);
+        Log.e("FAILEDREQ", "onFailed: " + message);
+    }
+
+    @OnClick(R.id.text1)
+    public void onViewClicked() {
+        SecondActivity.startActivity(getActivity());
     }
 }

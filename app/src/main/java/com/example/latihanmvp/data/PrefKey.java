@@ -1,5 +1,6 @@
 package com.example.latihanmvp.data;
 
-public enum PrefKey {
-
+public interface PrefKey {
+    String PREF_APP = "prefApp";
+    String TEST = "test";
 }

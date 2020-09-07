@@ -19,7 +19,7 @@ public class NetworkClient {
 
 
     public static synchronized Retrofit getInstance() {
-        if (retrofit==null) {
+        if (retrofit == null) {
             if (gson == null) {
                 gson = new GsonBuilder().setLenient().create();
             }

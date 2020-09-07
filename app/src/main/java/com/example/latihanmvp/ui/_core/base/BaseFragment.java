@@ -2,9 +2,9 @@ package com.example.latihanmvp.ui._core.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 
 import com.example.latihanmvp.network.NetworkClient;
 import com.example.latihanmvp.network.NetworkInterface;
+import com.example.latihanmvp.ui._core.mvp.MvpView;
+import com.example.latihanmvp.utils.PreferenceUtils;
 
 import butterknife.ButterKnife;
 
 
-public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
+public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements MvpView {
 
     public BaseActivity mActivity;
     protected P presenter;
@@ -47,8 +49,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof BaseActivity) {
-            BaseActivity activity = (BaseActivity) context;
-            this.mActivity = activity;
+            this.mActivity = (BaseActivity) context;
             mActivity.onFragmentAttach();
         }
     }
@@ -66,6 +67,14 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
             presenter.onDetach();
     }
 
+    @Override
+    public void showToastMessage(String s) {
+        if (mActivity != null) {
+            mActivity.showToastMessage(s);
+        }
+    }
+
+    @Override
     public void showLoading() {
         if (mActivity != null) {
             hideLoading();
@@ -73,6 +82,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
         }
     }
 
+    @Override
     public void hideLoading() {
         if (mActivity != null) {
             mActivity.hideLoading();

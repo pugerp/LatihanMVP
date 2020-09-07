@@ -13,7 +13,7 @@ public class SecondPresenter extends BasePresenter<SecondActivity> implements Se
         addSubscribe(networkInterface.getAllEmployess(), new NetworkCallback<PagingResponse<EmployeeResp>>() {
             @Override
             public void onSuccess(PagingResponse<EmployeeResp> model) {
-                mView.onSuccess(model.getData().get(0));
+                mView.onSuccess(model.getData());
             }
 
             @Override
