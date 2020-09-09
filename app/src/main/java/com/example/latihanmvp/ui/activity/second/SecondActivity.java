@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.latihanmvp.R;
 import com.example.latihanmvp.data.model.employee.EmployeeResp;
+import com.example.latihanmvp.di.components.ActivityComponent;
 import com.example.latihanmvp.network.NetworkClient;
 import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.base.BaseActivity;
@@ -26,23 +29,20 @@ public class SecondActivity extends BaseActivity<SecondPresenter> implements Sec
     }
 
     @Override
-    protected SecondPresenter createPresenter() {
-        return new SecondPresenter();
-    }
-
-    @Override
     protected int getLayout() {
         return R.layout.activity_second;
     }
 
     @Override
-    protected void onAttachView() {
-        presenter.onAttach(this);
+    protected void setup(Bundle savedInstanceState) {
+        presenter.loadAllEmployee();
     }
 
     @Override
-    protected void setup(Bundle savedInstanceState) {
-        presenter.loadAllEmployee();
+    protected void setComponent(@NonNull ActivityComponent component) {
+        component.inject(this);
+        presenter.onAttach(this);
+        presenter.setComponent(component);
     }
 
     @Override

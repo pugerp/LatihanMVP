@@ -12,13 +12,13 @@ public class PreferenceUtils {
         this.pref = context.getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
-    public void setString(PrefKey key, String value) {
+    public void setString(String s, String value) {
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString(key.name(), value);
+        editor.putString(s, value);
         editor.apply();
     }
 
-    public String getString(PrefKey key) {
-        return pref.getString(key.name(), "");
+    public String getString(String s) {
+        return pref.getString(s, "");
     }
 }

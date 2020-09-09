@@ -1,12 +1,15 @@
 package com.example.latihanmvp.ui.activity.main;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.latihanmvp.R;
+import com.example.latihanmvp.di.components.ActivityComponent;
 import com.example.latihanmvp.ui.activity.second.SecondActivity;
 import com.example.latihanmvp.ui._core.base.BaseActivity;
 import com.example.latihanmvp.ui._core.base.BaseFragment;
@@ -26,11 +29,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private Fragment fragment;
 
     @Override
-    protected MainPresenter createPresenter() {
-        return new MainPresenter();
-    }
-
-    @Override
     protected int getLayout() {
         return R.layout.activity_main;
     }
@@ -41,8 +39,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    public void onAttachView() {
+    protected void setComponent(@NonNull ActivityComponent component) {
+        component.inject(this);
         presenter.onAttach(this);
+        presenter.setComponent(component);
     }
 
     public void initFragment() {

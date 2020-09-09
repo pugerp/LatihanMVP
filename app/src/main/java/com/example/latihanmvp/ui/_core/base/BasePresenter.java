@@ -2,26 +2,36 @@ package com.example.latihanmvp.ui._core.base;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.mvp.MvpView;
+
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-public abstract class BasePresenter<V extends MvpView> {
+public abstract class BasePresenter<K, V extends MvpView> {
 
     private CompositeSubscription compositeSubscription;
     private Subscriber subscriber;
     protected V mView;
+    protected K component;
+
+    @Inject
     public NetworkInterface networkInterface;
 
-    public void onAttach(V view){
+    public abstract void setComponent(@NonNull K component);
+
+    public void onAttach(V view) {
         this.mView = view;
     }
 
-    public void onDetach(){
+    public void onDetach() {
         mView = null;
     }
 
@@ -50,9 +60,5 @@ public abstract class BasePresenter<V extends MvpView> {
         if (subscriber != null) {
             subscriber.unsubscribe();
         }
-    }
-
-    public void setNetworkInterface(NetworkInterface networkInterface) {
-        this.networkInterface = networkInterface;
     }
 }

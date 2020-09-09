@@ -10,31 +10,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.latihanmvp.network.NetworkClient;
-import com.example.latihanmvp.network.NetworkInterface;
+import com.example.latihanmvp.di.components.ActivityComponent;
+import com.example.latihanmvp.di.components.DaggerFragmentComponent;
+import com.example.latihanmvp.di.components.FragmentComponent;
+import com.example.latihanmvp.di.modules.FragmentModule;
+import com.example.latihanmvp.root.App;
 import com.example.latihanmvp.ui._core.mvp.MvpView;
-import com.example.latihanmvp.utils.PreferenceUtils;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
 
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements MvpView {
 
-    public BaseActivity mActivity;
+    @Inject
     protected P presenter;
-    protected abstract P createPresenter();
+
+    public BaseActivity mActivity;
+    private FragmentComponent fragmentComponent;
     protected abstract int getLayout();
     protected abstract void setup(View view);
-    protected abstract void onAttachView();
+    protected abstract void setComponent(@NonNull FragmentComponent component);
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getActivity().getLayoutInflater().inflate(getLayout(), container, false);
         ButterKnife.bind(this, view);
-        presenter = createPresenter();
-        presenter.setNetworkInterface(NetworkClient.getInstance().create(NetworkInterface.class));
-        onAttachView();
+        createComponent();
+        onComponentCreated(fragmentComponent);
         setup(view);
         return view;
     }
@@ -43,6 +48,17 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("CHECKFRAGMENT", "onViewCreated..");
+    }
+
+    protected void createComponent() {
+        fragmentComponent = DaggerFragmentComponent.builder()
+                .activityComponent(((BaseActivity) getActivity()).getActivityComponent())
+                .fragmentModule(new FragmentModule(this))
+                .build();
+    }
+
+    public void onComponentCreated(@NonNull FragmentComponent component) {
+        setComponent(component);
     }
 
     @Override

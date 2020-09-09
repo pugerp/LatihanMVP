@@ -1,12 +1,21 @@
 package com.example.latihanmvp.ui.fragment;
 
+import androidx.annotation.NonNull;
+
 import com.example.latihanmvp.data.model.PagingResponse;
 import com.example.latihanmvp.data.model.employee.EmployeeResp;
+import com.example.latihanmvp.di.components.FragmentComponent;
 import com.example.latihanmvp.network.NetworkCallback;
 import com.example.latihanmvp.network.NetworkInterface;
 import com.example.latihanmvp.ui._core.base.BasePresenter;
 
-public class FirstPresenter extends BasePresenter<FirstFragment> implements FirstContract.Presenter {
+import javax.inject.Inject;
+
+public class FirstPresenter extends BasePresenter<FragmentComponent, FirstFragment> implements FirstContract.Presenter {
+
+    @Inject
+    public FirstPresenter() {
+    }
 
     public void getEmployee() {
         mView.showLoading();
@@ -26,5 +35,10 @@ public class FirstPresenter extends BasePresenter<FirstFragment> implements Firs
                 mView.hideLoading();
             }
         });
+    }
+
+    @Override
+    public void setComponent(@NonNull FragmentComponent component) {
+        component.inject(this);
     }
 }
