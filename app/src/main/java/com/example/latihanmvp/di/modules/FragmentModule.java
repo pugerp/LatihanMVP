@@ -2,7 +2,7 @@ package com.example.latihanmvp.di.modules;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.latihanmvp.di.annotation.PerFragment;
+import com.example.latihanmvp.di.annotations.PerFragment;
 
 import org.jetbrains.annotations.NotNull;
 

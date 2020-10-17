@@ -4,8 +4,8 @@ import android.content.Context;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.latihanmvp.di.annotation.ActivityContext;
-import com.example.latihanmvp.di.annotation.PerActivity;
+import com.example.latihanmvp.di.annotations.ActivityContext;
+import com.example.latihanmvp.di.annotations.PerActivity;
 
 import org.jetbrains.annotations.NotNull;
 

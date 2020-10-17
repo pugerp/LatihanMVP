@@ -1,6 +1,6 @@
 package com.example.latihanmvp.di.components;
 
-import com.example.latihanmvp.di.annotation.PerActivity;
+import com.example.latihanmvp.di.annotations.PerActivity;
 import com.example.latihanmvp.di.modules.ActivityModule;
 import com.example.latihanmvp.ui.activity.main.MainActivity;
 import com.example.latihanmvp.ui.activity.main.MainPresenter;

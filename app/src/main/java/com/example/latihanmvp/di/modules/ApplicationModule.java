@@ -2,7 +2,7 @@ package com.example.latihanmvp.di.modules;
 
 import android.content.Context;
 
-import com.example.latihanmvp.di.annotation.AppContext;
+import com.example.latihanmvp.di.annotations.AppContext;
 import com.example.latihanmvp.root.App;
 
 import org.jetbrains.annotations.NotNull;

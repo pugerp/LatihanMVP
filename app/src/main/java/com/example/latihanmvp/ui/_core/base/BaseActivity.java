@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.example.latihanmvp.di.components.ActivityComponent;
-import com.example.latihanmvp.di.components.ApplicationComponent;
 import com.example.latihanmvp.di.components.DaggerActivityComponent;
 import com.example.latihanmvp.di.modules.ActivityModule;
 import com.example.latihanmvp.root.App;
